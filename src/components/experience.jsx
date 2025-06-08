@@ -6,6 +6,7 @@ function Experience(){
     const [responsibilities, setResponsibilities] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [show, setShow] = useState(false);
 
     function handleCompany(e){
         setCompany(e.target.value);
@@ -27,12 +28,16 @@ function Experience(){
         setEndDate(e.target.value);
     }
 
+    function showMore(){
+        setShow(!show);
+    }
+
     return (
         <>
-            <div>
+            <button onClick={showMore}>
                 Experience
-            </div>
-            <form onSubmit={e => {
+            </button>
+            {show && <form onSubmit={e => {
                 e.preventDefault();
             }}>
                 <div>
@@ -50,7 +55,7 @@ function Experience(){
                 <div>
                     <input onChange={handleEndDate} value={endDate} placeholder="end-date"></input>
                 </div>
-            </form>
+            </form>}
         </>
     );
 }

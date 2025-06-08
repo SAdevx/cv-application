@@ -4,6 +4,8 @@ export default function Education(){
     const [major, setMajor] = useState('');
     const [school, setSchool] = useState('');
     const [monthYr, setMonthYr] = useState('');
+    const [show, setShow] = useState(false);
+    
 
     function handleMajor(e){
         setMajor(e.target.value);
@@ -17,10 +19,14 @@ export default function Education(){
         setMonthYr(e.target.value);
     }
 
+    function showMore(){
+        setShow(!show);
+    }
+
     return (
         <>
-        <div>Education</div>
-        <form >
+        <button onClick={showMore}>Education</button>
+        {show && <form >
             <div>
                 <input onChange={handleMajor} value={major} placeholder="Major"></input>
             </div>
@@ -30,7 +36,7 @@ export default function Education(){
             <div>
                 <input onChange={handleMonthYr} value={monthYr} placeholder="startdate-enddate"></input>
             </div>
-        </form>
+        </form>}
         </>
     );
 }

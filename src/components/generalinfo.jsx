@@ -1,9 +1,11 @@
 import { useState } from "react";
+import "../styles/style.css"
 
 function Headers(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [show, setShow] = useState(false);
 
     function changeUserName(e){
         setName(e.target.value);
@@ -17,11 +19,14 @@ function Headers(){
         setPhoneNumber(e.target.value);
     }
 
+    function showMore(){
+        setShow(!show);
+    }
+
     return (
         <>
-        <><div>General Information</div></>
-
-        <form onSubmit={e => {
+        <button onClick={showMore}>General Information</button>
+        {show &&  <form onSubmit={e => {
             e.preventDefault();
         }}>
             <div>
@@ -36,7 +41,7 @@ function Headers(){
                 <input value={phoneNumber} placeholder="000-000-0000" onChange={changePhoneNumber}>
                 </input>
             </div>
-        </form>
+            </form>}
         </>
     )
 }
