@@ -30,16 +30,16 @@ function Headers(){
             e.preventDefault();
         }}>
             <div>
-                <input value={name} placeholder="Name" onChange={changeUserName}>
-                </input>
+                <input value={name} placeholder="Name" onChange={changeUserName}
+               />
             </div>
             <div>
-                <input value={email} placeholder="Email" onChange={changeEmail}>
-                </input>
+                <input value={email} placeholder="Email" onChange={changeEmail}
+                />
             </div>
             <div>
-                <input value={phoneNumber} placeholder="000-000-0000" onChange={changePhoneNumber}>
-                </input>
+                <input value={phoneNumber} placeholder="000-000-0000" onChange={changePhoneNumber}
+              />
             </div>
             </form>}
         </>

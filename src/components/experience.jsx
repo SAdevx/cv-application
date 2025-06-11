@@ -1,63 +1,101 @@
 import { useState } from "react";
 
-function Experience(){
-    const [company, setCompany] = useState('');
-    const [position, setPosition] = useState('');
-    const [responsibilities, setResponsibilities] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [show, setShow] = useState(false);
+function Experience() {
+  const [experiences, setExperiences] = useState([
+    {
+      id: crypto.randomUUID(),
+      company: "",
+      position: "",
+      responsibilities: "",
+      startdate: "",
+      enddate: "",
+    },
+  ]);
+      
 
-    function handleCompany(e){
-        setCompany(e.target.value);
-    }
+  const [show, setShow] = useState(false);
 
-    function handlePosition(e){
-        setPosition(e.target.value);
-    }
+  function showMore() {
+    setShow(!show);
+  }
 
-    function handleResponsibilities (e){
-        setResponsibilities(e.target.value);
-    }
+  function handleChange(index, e) {
+    let updateExperiences = [...experiences];
+    updateExperiences[index][e.target.name] = e.target.value;
+    setExperiences(updateExperiences);
+  }
 
-    function handleStartDate(e){
-        setStartDate(e.target.value);
-    }
+  function addFormFields(){
+      setExperiences([...experiences,{id: crypto.randomUUID(),company: "", position: "",responsibilities: "",startDate: "",endDate: ""}]);
+  }
 
-    function handleEndDate(e){
-        setEndDate(e.target.value);
-    }
+  function removeFormFields(experience){
+      const newExperiences = [...experiences];
+      newExperiences.splice(experience,1);
+      setExperiences(newExperiences);
+  }
 
-    function showMore(){
-        setShow(!show);
-    }
-
-    return (
-        <>
-            <button onClick={showMore}>
-                Experience
-            </button>
-            {show && <form onSubmit={e => {
-                e.preventDefault();
-            }}>
-                <div>
-                    <input onChange={handleCompany} value={company} placeholder="company"></input>
-                </div>
-                <div>
-                    <input onChange={handlePosition} value={position} placeholder="position"></input>
-                </div>
-                <div>
-                    <input onChange={handleResponsibilities} value={responsibilities} placeholder="responsibilities">
-                    </input></div>
-                <div>
-                    <input onChange={handleStartDate} value={startDate} placeholder="start-date">
-                    </input></div>
-                <div>
-                    <input onChange={handleEndDate} value={endDate} placeholder="end-date"></input>
-                </div>
-            </form>}
-        </>
-    );
+   return (
+    <>
+      <button onClick={showMore}>Experience</button>
+      {show && (
+        <div>
+            <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+           { experiences.map((experience, index) => (
+             <div key={experience.id}>
+              <div>
+                <input
+                  name = "company"
+                  onChange={e => handleChange(index,e)}
+                  value={experience.company || ""}
+                  placeholder="company"
+                />
+              </div>
+              <div>
+                <input
+                 name = "position"
+                  onChange={e => handleChange(index,e)}
+                  value={experience.position || ""}
+                  placeholder="position"
+                />
+              </div>
+              <div>
+                <input
+                name = "responsibilities"
+                   onChange={e => handleChange(index,e)}
+                  value={experience.responsibilities || ""}
+                  placeholder="responsibilities"
+                />
+              </div>
+              <div>
+                <input
+                 name = "startdate"
+                  onChange={e => handleChange(index,e)}
+                  value={experience.startdate || ""}
+                  placeholder="start-date"
+                />
+              </div>
+              <div>
+                <input
+                 name = "enddate"
+                  onChange={e => handleChange(index,e)}
+                  value={experience.enddate || ""}
+                  placeholder="end-date"
+               />
+              </div>
+              {index?  <button onClick={removeFormFields}>DELETE</button> : null}
+            </div>
+            ))}
+            </form>
+            <button type="button" onClick={addFormFields}>ADD</button>
+        </div>
+      )}
+    </>
+  );
 }
 
 export { Experience };

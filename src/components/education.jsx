@@ -28,13 +28,13 @@ export default function Education(){
         <button onClick={showMore}>Education</button>
         {show && <form >
             <div>
-                <input onChange={handleMajor} value={major} placeholder="Major"></input>
+                <input onChange={handleMajor} value={major} placeholder="Major" />
             </div>
             <div>
-                <input onChange={handleSchool} value={school} placeholder="School"></input>
+                <input onChange={handleSchool} value={school} placeholder="School" />
                 </div>
             <div>
-                <input onChange={handleMonthYr} value={monthYr} placeholder="startdate-enddate"></input>
+                <input onChange={handleMonthYr} value={monthYr} placeholder="startdate-enddate" />
             </div>
         </form>}
         </>
