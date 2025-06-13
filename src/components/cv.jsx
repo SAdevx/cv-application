@@ -1,8 +1,12 @@
-export function CV(){
+export function CV({name, email, phone}){
 
     return (
+        <>
         <div className="cv">
-            test
+            <div>{name}</div>
+            <div>{email}</div>
+            <div>{phone}</div>
         </div>
+        </> 
     )
 }

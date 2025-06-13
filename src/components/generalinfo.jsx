@@ -1,23 +1,8 @@
 import { useState } from "react";
 import "../styles/style.css"
 
-function Headers(){
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+function Headers({name, email, phone, changeGenInfo}){
     const [show, setShow] = useState(false);
-
-    function changeUserName(e){
-        setName(e.target.value);
-    }
-
-    function changeEmail(e){
-        setEmail(e.target.value);
-    }
-
-    function changePhoneNumber(e){
-        setPhoneNumber(e.target.value);
-    }
 
     function showMore(){
         setShow(!show);
@@ -30,15 +15,15 @@ function Headers(){
             e.preventDefault();
         }}>
             <div>
-                <input value={name} placeholder="Name" onChange={changeUserName}
+                <input name="name" value={name} placeholder="Name" onChange={(e) => changeGenInfo(e.target.name, e.target.value)}
                />
             </div>
             <div>
-                <input value={email} placeholder="Email" onChange={changeEmail}
+                <input name="email" value={email} placeholder="Email" onChange={(e) => changeGenInfo(e.target.name, e.target.value)}
                 />
             </div>
             <div>
-                <input value={phoneNumber} placeholder="000-000-0000" onChange={changePhoneNumber}
+                <input name="phone" value={phone} placeholder="000-000-0000" onChange={(e) => changeGenInfo(e.target.name, e.target.value)}
               />
             </div>
             </form>}
