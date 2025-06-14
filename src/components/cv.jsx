@@ -6,9 +6,10 @@ export function CV({
   school,
   monthYr,
   experiences,
+  printRef
 }) {
   return (
-    <div className="cv">
+    <div className="cv" ref={printRef}>
       <div>
         <div>{name}</div>
         <div>

@@ -1,12 +1,4 @@
-import { useState } from "react";
-
-export function Download() {
-  const [download, setDownload] = useState(false);
-
-  function downloadPDF() {
-    setDownload(!download);
-  }
-
+export function Download({ downloadPDF }) {
   return <button onClick={downloadPDF}>DOWNLOAD</button>;
 }
 

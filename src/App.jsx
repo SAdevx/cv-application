@@ -3,9 +3,12 @@ import { Education } from "./components/education";
 import { Experience } from "./components/experience";
 import { CV } from "./components/cv";
 import Download from "./components/downloadpdf";
+import html2canvas from "html2canvas";
 
 import "./styles/style.css";
 import { useState } from "react";
+import React from "react";
+import { jsPDF } from "jspdf";
 
 function App() {
   const [genInfo, setGenInfo] = useState({ name: "", email: "", phone: "" });
@@ -24,6 +27,28 @@ function App() {
       enddate: "",
     },
   ]);
+
+  const printRef = React.useRef(null);
+
+  const downloadPDF = async () => {
+    const element = printRef.current;
+    const canvas = await html2canvas(element, {
+      scale: 2,
+    });
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF({
+      orientation: "potrait",
+      unit: "px",
+      format: "a4",
+    });
+
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("cv.pdf");
+  };
 
   function handleGenInfo(name, value) {
     let newGenInfo = { ...genInfo, [name]: value };
@@ -83,7 +108,7 @@ function App() {
           addFormFields={addFormFields}
           removeFormFields={removeFormFields}
         />
-        <Download />
+        <Download downloadPDF={downloadPDF} />
       </div>
       <CV
         name={genInfo.name}
@@ -94,6 +119,7 @@ function App() {
         monthYr={education.monthYr}
         handleEducation={handleEducation}
         experiences={experiences}
+        printRef={printRef}
       />
     </>
   );
