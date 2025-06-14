@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/style.css"
 
-function Headers({name, email, phone, changeGenInfo}){
+function Headers({name, email, phone, handleGenInfo}){
     const [show, setShow] = useState(false);
 
     function showMore(){
@@ -15,15 +15,15 @@ function Headers({name, email, phone, changeGenInfo}){
             e.preventDefault();
         }}>
             <div>
-                <input name="name" value={name} placeholder="Name" onChange={(e) => changeGenInfo(e.target.name, e.target.value)}
+                <input name="name" value={name} placeholder="Name" onChange={(e) => handleGenInfo(e.target.name, e.target.value)}
                />
             </div>
             <div>
-                <input name="email" value={email} placeholder="Email" onChange={(e) => changeGenInfo(e.target.name, e.target.value)}
+                <input name="email" value={email} placeholder="Email" onChange={(e) => handleGenInfo(e.target.name, e.target.value)}
                 />
             </div>
             <div>
-                <input name="phone" value={phone} placeholder="000-000-0000" onChange={(e) => changeGenInfo(e.target.name, e.target.value)}
+                <input name="phone" value={phone} placeholder="000-000-0000" onChange={(e) => handleGenInfo(e.target.name, e.target.value)}
               />
             </div>
             </form>}

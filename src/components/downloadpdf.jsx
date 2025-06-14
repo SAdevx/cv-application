@@ -1,17 +1,13 @@
 import { useState } from "react";
 
-export function Download(){
-    const [download, setDownload] = useState(false);
+export function Download() {
+  const [download, setDownload] = useState(false);
 
-    function downloadPDF(){
-        setDownload(!download);
-    }
+  function downloadPDF() {
+    setDownload(!download);
+  }
 
-    return (
-        <button onClick={downloadPDF}>
-            DOWNLOAD
-        </button>
-    )
+  return <button onClick={downloadPDF}>DOWNLOAD</button>;
 }
 
 export default Download;
