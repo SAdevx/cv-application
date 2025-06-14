@@ -6,7 +6,7 @@ export function CV({
   school,
   monthYr,
   experiences,
-  printRef
+  printRef,
 }) {
   return (
     <div className="cv" ref={printRef}>
@@ -25,7 +25,7 @@ export function CV({
       </div>
       <div>
         {experiences.map((experience) => (
-          <>
+          <div key={experience.id}>
             <div>{experience.company}</div>
             <div>{experience.position}</div>
             <div>{experience.responsibilities}</div>
@@ -35,7 +35,7 @@ export function CV({
               {experience.enddate}
             </div>
             <div></div>
-          </>
+          </div>
         ))}
       </div>
     </div>
